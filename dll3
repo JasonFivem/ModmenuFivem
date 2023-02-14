@@ -44,5 +44,3 @@ function MainMenu()
         Citizen.Wait(0)
     end
 end
-
-MainMenu()

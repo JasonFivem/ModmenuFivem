@@ -1,46 +1,27 @@
---[[ Main Menu
--- Here goes the code for your FiveM mod menu that won't get you banned.
---]]
+local modMenu = {}
 
-function MainMenu()
-    WarMenu.CreateMenu('MainMenu', 'Main Menu')
+modMenu.menuActive = false
 
-    WarMenu.SetTitleBackgroundColor('MainMenu', 0, 0, 0, 255)
-    WarMenu.SetTitleTextColor('MainMenu', 255, 255, 255, 255)
-
-    WarMenu.CreateSubMenu('Options', 'MainMenu', 'Options')
-    WarMenu.CreateSubMenu('Cheats', 'MainMenu', 'Cheats')
-    WarMenu.CreateSubMenu('Debug', 'MainMenu', 'Debug')
-    WarMenu.CreateSubMenu('About', 'MainMenu', 'About')
-
-    while true do
-        if WarMenu.IsMenuOpened('MainMenu') then
-            if WarMenu.MenuButton('Options', 'Options') then
-            elseif WarMenu.MenuButton('Cheats', 'Cheats') then
-            elseif WarMenu.MenuButton('Debug', 'Debug') then
-            elseif WarMenu.MenuButton('About', 'About') then
-            elseif WarMenu.Button('Exit') then
-                WarMenu.CloseMenu()
-            end
-
-            WarMenu.Display()
-        elseif WarMenu.IsMenuOpened('Options') then
-            -- Here goes the code for the Options submenu.
-            WarMenu.Display()
-        elseif WarMenu.IsMenuOpened('Cheats') then
-            -- Here goes the code for the Cheats submenu.
-            WarMenu.Display()
-        elseif WarMenu.IsMenuOpened('Debug') then
-            -- Here goes the code for the Debug submenu.
-            WarMenu.Display()
-        elseif WarMenu.IsMenuOpened('About') then
-            -- Here goes the code for the About submenu.
-            WarMenu.Display()
-        elseif IsControlJustPressed(0, 244) then
-            -- 244 is F5
-            WarMenu.OpenMenu('MainMenu')
-        end
-
-        Citizen.Wait(0)
+function modMenu:toggleMenu()
+    if self.menuActive then
+        self.menuActive = false
+    else
+        self.menuActive = true
     end
 end
+
+function modMenu:drawMenu()
+    if self.menuActive then
+        -- draw menu
+    end
+end
+
+function modMenu:banPlayer()
+    -- ban player logic
+end
+
+function modMenu:kickPlayer()
+    -- kick player logic
+end
+
+return modMenu
